@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 public class Config {
 
-	private static final String PATH_CONFIG_FILE = "C:/Java/project/bin/skuns/chat/config.xml";
+	private static final String PATH_CONFIG_FILE = "/home/skuns/git/testing/chatServer/bin/skuns/chat/config.xml";
 
 	public static int PORT;
 	public static int MAX_USER;

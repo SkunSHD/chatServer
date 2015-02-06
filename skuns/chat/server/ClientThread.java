@@ -27,7 +27,7 @@ public class ClientThread extends Thread {
 			final ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 			final ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 
-			// Забираем логин нового пользователя
+			// Taking login of new user
 			while(true) {
 				login = in.readUTF();
 				if(login != null) {
@@ -37,19 +37,19 @@ public class ClientThread extends Thread {
 
 			client = new Client(socket, out, in);
 
-			// Добавляем новичка в список пользователей
+			// Adding new user to UserList
 			Server.getUserList().addUser(login, client);
 
-			// Передаем всем сообщение пользователя
+			// Resending user message
 			while(true) {
 
 				if( (message = (Message) in.readObject()) != null ) {
 					if(message.getMessage().equalsIgnoreCase("quit")) {
 
-						// Уведомляем пользователей об отключившемся чуваке
+						// Users notification about disconnected user
 						Message infoMessage1 = new Message("Server", login+" disconected", "service", socket.getInetAddress().getHostAddress());
 						this.broadcast(Server.getUserList().getClientList(), infoMessage1);
-						// Отсылаем команду клиенту для его остановки
+						// Sending to client stop-socket message
 						Message infoMessage2 = new Message("Server", "close", "Info mess", socket.getInetAddress().getHostAddress());
 						out.writeObject(infoMessage2);
 

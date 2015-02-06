@@ -7,7 +7,6 @@ import skuns.chat.client.Client;
 
 public class UserList {
 
-	// Храним подключенных пользователей
 	Map<String, Client> onlineUsers = new HashMap<String, Client>();
 
 	public void addUser (String login, Client client) {
