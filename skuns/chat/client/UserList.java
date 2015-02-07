@@ -11,6 +11,12 @@ public class UserList {
 
 	public void addUser (String login, Client client) {
 
+		int i = 1;
+		while(onlineUsers.containsKey(login)) {
+			login = login + i;
+			i++;
+		}
+
 		this.onlineUsers.put(login, client);
 		System.out.println(login + " connected");
 	}
