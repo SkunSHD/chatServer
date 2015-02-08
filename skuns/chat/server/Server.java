@@ -8,11 +8,13 @@ import skuns.chat.Config;
 import skuns.chat.client.UserList;
 import skuns.chat.server.ClientThread;
 import skuns.chat.auxiliary.Message;
+import skuns.chat.auxiliary.MessageHistory;
 
 
 public class Server {
 
 	private static UserList list = new UserList();
+	private static MessageHistory messageHistory = new MessageHistory();
 
 	public Server() {
 		try {
@@ -40,5 +42,9 @@ public class Server {
 
 	public synchronized static UserList getUserList() {
 		return list;
+	}
+
+	public synchronized static MessageHistory getHistoryClass() {
+		return messageHistory;
 	}
 }

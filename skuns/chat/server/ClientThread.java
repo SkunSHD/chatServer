@@ -61,6 +61,7 @@ public class ClientThread extends Thread {
 						break;
 					} else {
 						this.broadcast(Server.getUserList().getClientList(), message);
+						Server.getHistoryClass().addMessage(message);
 					}
 				}
 			}
