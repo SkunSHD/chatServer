@@ -7,10 +7,10 @@ import skuns.chat.client.Client;
 
 public class UserList {
 
-	Map<String, Client> onlineUsers = new HashMap<String, Client>();
+	private Map<String, Client> onlineUsers = new HashMap<String, Client>();
+	private Map<String, String> history = new HashMap<String, String>();
 
 	public void addUser (String login, Client client) {
-
 		int i = 1;
 		while(onlineUsers.containsKey(login)) {
 			login = login + i;
@@ -25,9 +25,6 @@ public class UserList {
 		onlineUsers.remove(user);
 	}
 
-	public String[] getUsersInString () {
-		return onlineUsers.entrySet().toArray(new String[0]);
-	}
 
 	public ArrayList<Client> getClientList () {
 		ArrayList<Client> clientList = new ArrayList<Client>();
@@ -36,4 +33,12 @@ public class UserList {
 		}
 		return clientList;
 	}
+
+	public int size() {
+		return onlineUsers.size();
+	}
+
+	// public String[] getUsersInString () {
+	// 	return onlineUsers.entrySet().toArray(new String[0]);
+	// }
 }

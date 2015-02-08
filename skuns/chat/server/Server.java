@@ -26,7 +26,12 @@ public class Server {
 					while(client == null) {
 						client = socketListener.accept();
 					}
-					new ClientThread(client);
+					if(getUserList().size() < Config.MAX_USER) {
+						new ClientThread(client);
+					} else {
+						client.close();
+						continue;
+					}
 				}
 
 		} catch(SocketException e) {
