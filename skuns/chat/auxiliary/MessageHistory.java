@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import skuns.chat.auxiliary.Message;
 import skuns.chat.Config;
 
-// add serialization, for what?
-
 public class MessageHistory {
 	private ArrayList<Message> history = new ArrayList<Message>(Config.MAX_MESSAGE);
 
