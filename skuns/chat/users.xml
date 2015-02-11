@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<database>
+	<user>
+		<login>skuns</login>
+		<pass>123</pass>
+	</user>
+	<user>
+		<login>Severga</login>
+		<pass>321</pass>
+	</user>
+	<user>
+		<login>Mugo</login>
+		<pass>777</pass>
+	</user>
+</database>

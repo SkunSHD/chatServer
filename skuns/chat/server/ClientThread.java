@@ -40,6 +40,9 @@ public class ClientThread extends Thread {
 			// Adding new user to UserList
 			Server.getUserList().addUser(login, client);
 
+			// Test userList working
+			Server.getUserList().authorization();
+
 			// Resending user message
 			while(true) {
 
@@ -61,6 +64,7 @@ public class ClientThread extends Thread {
 						break;
 					} else {
 						this.broadcast(Server.getUserList().getClientList(), message);
+						Server.getHistoryClass().addMessage(message);
 					}
 				}
 			}
