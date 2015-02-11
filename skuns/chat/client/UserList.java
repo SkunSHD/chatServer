@@ -17,29 +17,33 @@ import skuns.chat.Config;
 public class UserList {
 
 	private Map<String, Client> onlineUsers = new HashMap<String, Client>();
-	private Map<String, String> authorize = new HashMap<String, String>();
+	private static Map<String, String> authorize = new HashMap<String, String>();
 
 	static {
+		try {
+			File file = new File("/home/skuns/git/testing/chatServer/src/skuns/chat/users.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(file);
+			doc.getDocumentElement().normalize();
 
-		File file = new File("C:/Java/git/bin/skuns/chat/users.xml");
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			NodeList nList = doc.getElementsByTagName("user");
 
-		Document doc = dBuilder.parse(file);
-		doc.getDocumentElement().normalize();
+			for(int i=0; i < nList.getLength(); i++) {
 
-		NodeList nList = doc.getElementByTagName("user");
-		for(int i=0; i<nList.getLength(); i++) {
-			Node nNode = nList.item(i);
-			if(nList.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
+				Node nNode = nList.item(i);
 
-				String login = eElement.getElementByTagName("login").item(0).getTextContent();
-				String pass = eElement.getElementByTagName("pass").item(0).getTextContent();
-				authorize.put(login, pass);
+				if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+
+					String login = eElement.getElementsByTagName("login").item(0).getTextContent();
+					String pass = eElement.getElementsByTagName("pass").item(0).getTextContent();
+					authorize.put(login, pass);
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
 	}
 
 	public void addUser (String login, Client client) {
@@ -70,7 +74,7 @@ public class UserList {
 		return onlineUsers.size();
 	}
 
-	public void authorization() {
+	public static void authorization() {
 		for(Map.Entry<String, String> node : authorize.entrySet()) {
 			System.out.printf("login: %s pass: %s", node.getKey(), node.getValue());
 		}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<datebase>
+<database>
 	<user>
 		<login>skuns</login>
 		<pass>123</pass>
@@ -13,4 +13,4 @@
 		<login>Mugo</login>
 		<pass>777</pass>
 	</user>
-</datebase>
+</database>
