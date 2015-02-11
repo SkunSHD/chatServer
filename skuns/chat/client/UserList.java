@@ -21,7 +21,7 @@ public class UserList {
 
 	static {
 		try {
-			File file = new File("/home/skuns/git/testing/chatServer/src/skuns/chat/users.xml");
+			File file = new File("C://Java/git/chatServer/skuns/chat/users.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(file);
@@ -57,7 +57,7 @@ public class UserList {
 		System.out.println(login + " connected");
 	}
 
-	public void deleteUser(String user) {
+	public void deleteUser (String user) {
 		onlineUsers.remove(user);
 	}
 
@@ -74,9 +74,15 @@ public class UserList {
 		return onlineUsers.size();
 	}
 
-	public static void authorization() {
+	public boolean authentication (String login, String pass) {
+		System.out.println("1");
 		for(Map.Entry<String, String> node : authorize.entrySet()) {
-			System.out.printf("login: %s pass: %s", node.getKey(), node.getValue());
+			System.out.println("2");
+			if((login.trim().equals(node.getKey())) && (pass.trim().equals(node.getValue()))) {
+				System.out.println("3");
+				return true;
+			}
 		}
+		return false;
 	}
 }
