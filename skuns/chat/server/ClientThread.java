@@ -45,12 +45,16 @@ public class ClientThread extends Thread {
 			}
 
 			// User authentication
-			//Need to add close client process
 			if(Server.getUserList().authentication(login, password)) {
 				client = new Client(socket, out, in);
 			} else {
 				// stop client
-				Message nonAuthorizste = new Message("Server", "error authorization", "service", "127.0.0.1");
+				Message nonAuthorize = new Message("Server", "error authorization", "service", "127.0.0.1");
+				out.writeObject(nonAuthorize);
+				out.close();
+				in.close();
+				socket.close();
+				return;
 			}
 
 			// Adding new user to UserList
